@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>MFS Clinical Laboratory – Blood Check-up Camp</title>
@@ -22,12 +22,14 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         header {
             background: var(--primary);
             color: var(--accent);
             padding: 20px 0;
             text-align: center;
+            animation: slideDown 1s ease-out;
         }
         header h1 {
             font-size: 2.2rem;
@@ -47,6 +49,7 @@
             border-radius: 10px;
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1.5s ease-in;
         }
         .hero-overlay {
             position: absolute;
@@ -59,6 +62,7 @@
             font-size: 2rem;
             font-weight: 700;
             text-shadow: 0 2px 4px rgba(0,0,0,.6);
+            animation: zoomIn 1s ease-out;
         }
         .section {
             margin: 30px 0;
@@ -66,11 +70,19 @@
             border-radius: 10px;
             padding: 25px;
             box-shadow: 0 2px 8px rgba(0,0,0,.08);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease-out forwards;
         }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+        .section:nth-child(5) { animation-delay: 0.8s; }
         h2 {
             color: var(--secondary);
             margin-bottom: 15px;
             font-size: 1.6rem;
+            animation: slideLeft 0.8s ease-out;
         }
         ul {
             list-style: none;
@@ -81,6 +93,7 @@
             padding-left: 30px;
             margin: 10px 0;
             font-size: 1.05rem;
+            animation: slideRight 0.8s ease-out;
         }
         .highlight {
             background: #fff3cd;
@@ -88,6 +101,7 @@
             padding: 15px;
             border-radius: 5px;
             font-weight: 600;
+            animation: pulse 2s infinite;
         }
         .btn-group {
             display: flex;
@@ -104,11 +118,13 @@
             border-radius: 6px;
             font-size: 1.1rem;
             cursor: pointer;
-            transition: background .3s;
+            transition: all 0.3s ease;
             text-align: center;
+            animation: bounce 2s infinite;
         }
         .btn:hover {
             background: #0d47a1;
+            transform: scale(1.05);
         }
         footer {
             background: #222;
@@ -116,6 +132,7 @@
             text-align: center;
             padding: 20px 10px;
             font-size: .9rem;
+            animation: slideUp 1s ease-out;
         }
         @media (max-width: 600px) {
             header h1 {
@@ -125,62 +142,102 @@
                 font-size: 1.5rem;
             }
         }
+        
+        /* Animations */
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <h1>MFS Clinical Laboratory</h1>
-    <p>ब्लड चेक-अप कैंप – आपका स्वास्थ्य, हमारी प्राथमिकता</p>
+    <p>Blood Check-up Camp – Your Health, Our Priority</p>
 </header>
 
 <section class="container">
     <div class="hero">
-        <div class="hero-overlay">18 जनवरी 2026, रविवार | सुबह 9 बजे – रात 8 बजे</div>
+        <div class="hero-overlay">18 January 2026, Sunday | 9 AM – 8 PM</div>
     </div>
 
     <div class="section">
-        <h2>कैंप विवरण</h2>
-        <p class="highlight">स्थान: Naubag Main Road, Afaque Hospital के सामने, Secab School के पास, Vijayapur</p>
-        <p>तारीख़: <strong>18 जनवरी 2026 (रविवार)</strong></p>
-        <p>समय: <strong>सुबह 9 बजे से रात 8 बजे तक</strong></p>
-        <p>रजिस्ट्रेशन फीस: ₹200 (सभी टेस्ट फ्री, होम सैंपल कलेक्शन उपलब्ध)</p>
+        <h2>Camp Details</h2>
+        <p class="highlight">Location: Naubag Main Road, Opposite Afaque Hospital, Near Secab School, Vijayapur</p>
+        <p>Date: <strong>18 January 2026 (Sunday)</strong></p>
+        <p>Time: <strong>9 AM to 8 PM</strong></p>
+        <p>Registration Fee: ₹200 (All tests free, Home sample collection available)</p>
     </div>
 
     <div class="section">
-        <h2>फ्री टेस्ट की सूची</h2>
+        <h2>Free Tests List</h2>
         <ul>
-            <li>हीमोग्लोबिन (Haemoglobin)</li>
-            <li>रैंडम ब्लड शुगर (RBS)</li>
+            <li>Haemoglobin</li>
+            <li>Random Blood Sugar (RBS)</li>
             <li>HbA1c</li>
-            <li>लिपिड प्रोफ़ाइल (Lipid Profile)</li>
-            <li>सीरम क्रिएटिनिन (Serum Creatinine)</li>
-            <li>सीरम यूरिया (Serum Urea)</li>
-            <li>सीरम यूरिक एसिड (Serum Uric Acid)</li>
-            <li>सीरम कैल्शियम (Serum Calcium)</li>
+            <li>Lipid Profile</li>
+            <li>Serum Creatinine</li>
+            <li>Serum Urea</li>
+            <li>Serum Uric Acid</li>
+            <li>Serum Calcium</li>
         </ul>
     </div>
 
     <div class="section">
-        <h2>रजिस्ट्रेशन / संपर्क</h2>
-        <p>अभी रजिस्टर करें और अपनी स्लॉट सुरक्षित करें। होम सैंपल कलेक्शन की सुविधा भी उपलब्ध है।</p>
+        <h2>Registration / Contact</h2>
+        <p>Register now and secure your slot. Home sample collection facility also available.</p>
         <div class="btn-group">
-            <button class="btn" onclick="callNow(7795135052)">📞 7795135052 पर कॉल करें</button>
-            <button class="btn" onclick="callNow(7259990787)">📞 7259990787 पर कॉल करें</button>
-            <button class="btn" onclick="openWhatsApp()">📲 WhatsApp पर मैसेज करें</button>
+            <button class="btn" onclick="callNow(7795135052)">📞 Call 7795135052</button>
+            <button class="btn" onclick="callNow(7259990787)">📞 Call 7259990787</button>
+            <button class="btn" onclick="openWhatsApp()">📲 Message on WhatsApp</button>
         </div>
     </div>
 
     <div class="section">
-        <h2>मालिक की जानकारी</h2>
+        <h2>Owner Information</h2>
         <p><strong>Prop.</strong> Fauzan Shaikh</p>
         <p>MFS Clinical Laboratory, Vijayapura</p>
     </div>
 </section>
 
 <footer>
-    &copy; 2026 MFS Clinical Laboratory. सभी अधिकार सुरक्षित।<br>
-    डिज़ाइन और डेवलपमेंट: Blood Donation Landing Page Initiative
+    &copy; 2026 MFS Clinical Laboratory. All rights reserved.<br>
+    Design and Development: Blood Donation Landing Page Initiative
 </footer>
 
 <script>
@@ -188,7 +245,7 @@
         window.location.href = 'tel:' + num;
     }
     function openWhatsApp() {
-        const msg = encodeURIComponent('MFS Clinical Laboratory ब्लड चेक-अप कैंप के लिए रजिस्ट्रेशन करना है।');
+        const msg = encodeURIComponent('I want to register for MFS Clinical Laboratory Blood Check-up Camp.');
         window.open('https://wa.me/917795135052?text=' + msg, '_blank');
     }
 </script>
