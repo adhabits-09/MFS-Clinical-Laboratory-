@@ -1,253 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>MFS Clinical Laboratory – Blood Check-up Camp</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        :root {
-            --primary: #d32f2f;
-            --secondary: #1976d2;
-            --accent: #ffffff;
-            --bg: #f5f5f5;
-            --text: #333;
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        header {
-            background: var(--primary);
-            color: var(--accent);
-            padding: 20px 0;
-            text-align: center;
-            animation: slideDown 1s ease-out;
-        }
-        header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 5px;
-        }
-        header p {
-            font-size: 1.1rem;
-        }
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-        }
-        .hero {
-            background: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            height: 280px;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            animation: fadeIn 1.5s ease-in;
-        }
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 2rem;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,.6);
-            animation: zoomIn 1s ease-out;
-        }
-        .section {
-            margin: 30px 0;
-            background: var(--accent);
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.08);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 0.8s ease-out forwards;
-        }
-        .section:nth-child(2) { animation-delay: 0.2s; }
-        .section:nth-child(3) { animation-delay: 0.4s; }
-        .section:nth-child(4) { animation-delay: 0.6s; }
-        .section:nth-child(5) { animation-delay: 0.8s; }
-        h2 {
-            color: var(--secondary);
-            margin-bottom: 15px;
-            font-size: 1.6rem;
-            animation: slideLeft 0.8s ease-out;
-        }
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        ul li {
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="%23d32f2f"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>') no-repeat left center;
-            padding-left: 30px;
-            margin: 10px 0;
-            font-size: 1.05rem;
-            animation: slideRight 0.8s ease-out;
-        }
-        .highlight {
-            background: #fff3cd;
-            border-left: 5px solid var(--primary);
-            padding: 15px;
-            border-radius: 5px;
-            font-weight: 600;
-            animation: pulse 2s infinite;
-        }
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .btn {
-            flex: 1 1 220px;
-            background: var(--secondary);
-            color: var(--accent);
-            padding: 14px 0;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            animation: bounce 2s infinite;
-        }
-        .btn:hover {
-            background: #0d47a1;
-            transform: scale(1.05);
-        }
-        footer {
-            background: #222;
-            color: #ccc;
-            text-align: center;
-            padding: 20px 10px;
-            font-size: .9rem;
-            animation: slideUp 1s ease-out;
-        }
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-            .hero-overlay {
-                font-size: 1.5rem;
-            }
-        }
-        
-        /* Animations */
-        @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideLeft {
-            from { transform: translateX(-50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slideRight {
-            from { transform: translateX(50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        @keyframes slideUp {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Prof. Fauzan Shaikh | Diagnostic Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1fa4e5;
+  --green:#22c55e;
+  --grey:#f9fcff;
+  --dark:#222;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:var(--grey);color:var(--dark);scroll-behavior:smooth}
+section{padding:70px 8%}
+h1,h2{text-transform:capitalize}
+.btn{
+  background:var(--blue);color:#fff;padding:14px 28px;border-radius:40px;
+  text-decoration:none;font-weight:600;display:inline-block;transition:.3s}
+.btn:hover{background:#1482b8;transform:scale(1.05)}
+/* HERO */
+.hero{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.hero img{width:380px;border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.2);animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+/* TIMER */
+.timer-box{background:#eaf7ff;padding:30px;border-radius:20px;text-align:center;font-size:22px;font-weight:600}
+/* FREE CARDS */
+.free-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.free-card{background:#fff;padding:25px;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.08);text-align:center;transition:.3s}
+.free-card:hover{transform:translateY(-8px)}
+/* AUTHORITY */
+.authority{display:flex;align-items:center;gap:30px;flex-wrap:wrap;background:#fff;padding:30px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,.05)}
+.authority img{width:140px;border-radius:50%;box-shadow:0 10px 20px rgba(0,0,0,.15)}
+/* REVIEWS */
+.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.review{background:#fff;padding:20px;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.stars{color:#f59e0b;font-size:18px}
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.gallery img{width:100%;border-radius:15px;box-shadow:0 10px 25px rgba(0,0,0,.15);transition:.3s}
+.gallery img:hover{transform:scale(1.05)}
+/* FORM */
+form{background:#fff;padding:30px;border-radius:20px;box-shadow:0 15px 30px rgba(0,0,0,.08);max-width:500px;margin:auto}
+form input,form select{width:100%;padding:12px 15px;margin:10px 0;border:1px solid #ddd;border-radius:10px;font-size:16px}
+form button{width:100%;border:none;cursor:pointer}
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--blue),var(--green));color:#fff;text-align:center;border-radius:30px;padding:50px 8%}
+.cta h2{margin-bottom:15px}
+/* FLOATING WHATSAPP */
+.whatsapp-float{
+  position:fixed;bottom:25px;right:25px;z-index:999;
+  background:var(--green);color:#fff;width:60px;height:60px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:28px;
+  box-shadow:0 5px 15px rgba(0,0,0,.25);animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+/* MOBILE */
+@media(max-width:768px){
+  .hero{text-align:center}
+  .hero img{width:100%}
+}
+</style>
 </head>
+
 <body>
 
-<header>
-    <h1>MFS Clinical Laboratory</h1>
-    <p>Blood Check-up Camp – Your Health, Our Priority</p>
-</header>
-
-<section class="container">
-    <div class="hero">
-        <div class="hero-overlay">18 January 2026, Sunday | 9 AM – 8 PM</div>
-    </div>
-
-    <div class="section">
-        <h2>Camp Details</h2>
-        <p class="highlight">Location: Naubag Main Road, Opposite Afaque Hospital, Near Secab School, Vijayapur</p>
-        <p>Date: <strong>18 January 2026 (Sunday)</strong></p>
-        <p>Time: <strong>9 AM to 8 PM</strong></p>
-        <p>Registration Fee: ₹200 (All tests free, Home sample collection available)</p>
-    </div>
-
-    <div class="section">
-        <h2>Free Tests List</h2>
-        <ul>
-            <li>Haemoglobin</li>
-            <li>Random Blood Sugar (RBS)</li>
-            <li>HbA1c</li>
-            <li>Lipid Profile</li>
-            <li>Serum Creatinine</li>
-            <li>Serum Urea</li>
-            <li>Serum Uric Acid</li>
-            <li>Serum Calcium</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Registration / Contact</h2>
-        <p>Register now and secure your slot. Home sample collection facility also available.</p>
-        <div class="btn-group">
-            <button class="btn" onclick="callNow(7795135052)">📞 Call 7795135052</button>
-            <button class="btn" onclick="callNow(7259990787)">📞 Call 7259990787</button>
-            <button class="btn" onclick="openWhatsApp()">📲 Message on WhatsApp</button>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Owner Information</h2>
-        <p><strong>Prop.</strong> Fauzan Shaikh</p>
-        <p>MFS Clinical Laboratory, Vijayapura</p>
-    </div>
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Your Health, Our Priority</h1>
+    <p>Accurate Diagnosis | Trusted Reports | Home Sample Collection</p><br>
+    <a href="#form" class="btn">Book Test Now</a>
+  </div>
+  <img src="https://i.ibb.co/93nBsZWd/IMG-0687.jpg" alt="Doctor">
 </section>
 
-<footer>
-    &copy; 2026 MFS Clinical Laboratory. All rights reserved.<br>
-    Design and Development: Blood Donation Landing Page Initiative
-</footer>
+<!-- TIMER -->
+<section class="timer-box">
+  ⏳ Only <span id="slots">7</span> Home Collection Slots Left Today!
+</section>
+
+<!-- FREE SERVICES -->
+<section>
+  <h2>Absolutely FREE Services</h2><br>
+  <div class="free-grid">
+    <div class="free-card">Free Doctor Consultation</div>
+    <div class="free-card">Free Report Explanation</div>
+    <div class="free-card">Free Diet Guidance</div>
+    <div class="free-card">Free Home Sample Pickup</div>
+  </div>
+</section>
+
+<!-- AUTHORITY -->
+<section class="authority">
+  <img src="https://i.ibb.co/93nBsZWd/IMG-0687.jpg" alt="Doctor">
+  <div>
+    <h2>Prof. Fauzan Shaikh .MTL</h2>
+    <p>Senior Diagnostic Consultant<br>
+    10+ Years Experience | Trusted by 1000+ Patients</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section>
+  <h2>Patient Trust</h2><br>
+  <div class="reviews">
+    <div class="review">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p>“Very clean lab & accurate reports”</p>
+      <small>- Puneet A.</small>
+    </div>
+    <div class="review">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p>“Home sample collection was smooth”</p>
+      <small>- Anita K.</small>
+    </div>
+    <div class="review">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p>“Doctor explained reports clearly”</p>
+      <small>- Rahul S.</small>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section>
+  <h2>Our Lab & Facility</h2><br>
+  <div class="gallery">
+    <img src="https://i.ibb.co/dwPB1m9V/IMG-0689.jpg" alt="Lab">
+    <img src="https://i.ibb.co/Z1W1rWxc/IMG-0684.jpg" alt="Lab">
+    <img src="https://i.ibb.co/35J4SMCt/IMG-0683.jpg" alt="Lab">
+    <img src="https://i.ibb.co/1tLNLc0P/IMG-0682.jpg" alt="Lab">
+    <img src="https://i.ibb.co/HLkC0J0S/IMG-0685.jpg" alt="Lab">
+    <img src="https://i.ibb.co/0pBNjkB5/IMG-0686.jpg" alt="Lab">
+    <img src="https://i.ibb.co/m5PWKGsv/IMG-0688.jpg" alt="Lab">
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section id="form">
+  <h2>Book Your Test in 30 Seconds</h2><br>
+  <form onsubmit="handleSubmit(event)">
+    <input type="text" placeholder="Your Name" required>
+    <input type="tel" placeholder="Mobile Number" required>
+    <select required>
+      <option value="">Select Test</option>
+      <option>Complete Blood Count</option>
+      <option>Lipid Profile</option>
+      <option>Liver Function</option>
+      <option>Kidney Function</option>
+      <option>Thyroid Profile</option>
+      <option>Other</option>
+    </select>
+    <label><input type="checkbox" checked> Free Home Sample Pickup</label>
+    <button type="submit" class="btn">Book via WhatsApp</button>
+  </form>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta">
+  <h2>Still Thinking?</h2>
+  <p>Your health can’t wait. Book today!</p>
+  <a href="https://maps.app.goo.gl/35oqursNjjEbN92v9?g_st=ipc" target="_blank" class="btn">📍 Get Directions</a>
+</section>
+
+<!-- FLOATING WHATSAPP -->
+<a class="whatsapp-float" href="https://wa.me/919999999999?text=Hello%20Doctor%2C%0AI%20want%20to%20book%20a%20diagnostic%20test.%0AName%3A%0AAge%3A%0ALocation%3A%0APreferred%20Time%3A" target="_blank">💬</a>
 
 <script>
-    function callNow(num) {
-        window.location.href = 'tel:' + num;
-    }
-    function openWhatsApp() {
-        const msg = encodeURIComponent('I want to register for MFS Clinical Laboratory Blood Check-up Camp.');
-        window.open('https://wa.me/917795135052?text=' + msg, '_blank');
-    }
+// DECREASING SLOTS COUNTER (stays same on reload)
+const key='slotsLeft';
+let s=localStorage.getItem(key);
+if(!s){s=7;localStorage.setItem(key,s)}
+document.getElementById('slots').textContent=s;
+setInterval(()=>{
+  if(s>1){s--;localStorage.setItem(key,s);document.getElementById('slots').textContent=s}
+},15000);
+
+// FORM SUBMIT → WHATSAPP
+function handleSubmit(e){
+  e.preventDefault();
+  const name=e.target[0].value, mobile=e.target[1].value, test=e.target[2].value;
+  const msg=`Hello Doctor,
+I want to book a diagnostic test.
+Name: ${name}
+Mobile: ${mobile}
+Test: ${test}
+Home Sample: Yes`;
+  window.open(`https://wa.me/919999999999?text=${encodeURIComponent(msg)}`);
+}
 </script>
 
 </body>
